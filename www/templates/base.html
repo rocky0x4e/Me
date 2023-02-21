@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <script src="/static/js/sidebar.js"> </script>
+  {% block script %} {% endblock %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0"
+    />
+    <title>Rocky</title>
+    {% block css %} {% endblock %}
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="static/icons/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="static/icons/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="static/icons/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="static/icons/favicon_io/site.webmanifest" />
+    {% block base_css %}
+    <link rel="stylesheet" href="static/css/base.css" />
+    {% endblock %}
+  </head>
+
+  <body>
+    <div id="sidebarBackground" hidden onclick="closeBar()"></div>
+    <div id="mySidebar" class="sidebar">
+      <div class="sizebar_upper">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeBar()"
+          >&times;</a
+        >
+        <p>
+          Thanks for visitting, this sidebar is for me only. Please ignore!!!
+        </p>
+      </div>
+      <div class="sizebar_lower">
+        <a class="lnk" href="/">🤌 Home</a>
+        <a class="lnk" href="/monitor">🤌 Node monitor</a>
+        <a class="lnk" href="https://10.0.0.100:8080">🤌 Gateway config</a>
+        <a class="lnk" href="/share">🤌 Share on NAS</a>
+        <a class="lnk" href="/t">🤌 Transmission torrent</a>
+        <a
+          class="lnk"
+          href="https://infura.io/dashboard/ethereum/20560320d63146d1bfc604a0594da2bc/stats"
+          >🤌 Infura stat</a
+        >
+      </div>
+    </div>
+    <header>
+      <div class="header_content">
+        <div class="header_left">
+          <img
+            src="static/img/avatar.jpg"
+            onclick="toggleBar()"
+            class="header_avatar"
+            alt="avatar"
+          />
+        </div>
+        <div class="header_right">
+          <a class="contact" href="https://www.linkedin.com/in/thach-nguyen"
+            ><img
+              src="static/logo/linkedin-linked-in.svg"
+              alt="linkedin logo"
+            />Thạch Nguyễn</a
+          >
+          <a class="contact" href="https://t.me/Rocky8x"
+            ><img src="static/logo/telegram.svg" alt="Telegram logo" />Rocky</a
+          >
+          <a class="contact" href="https://github.com/Rocky8x"
+            ><img
+              src="static/logo/github-dark.svg"
+              alt="github logo"
+            />Rocky8x</a
+          >
+          <a class="contact" href="mailto:madfatcat88@gmail.com"
+            ><img
+              src="static/logo/gmail.svg"
+              alt="gmail logo"
+            />madfatcat88@gmail.com</a
+          >
+          <a class="contact" href="tel:+84909605162"
+            ><img src="static/icons/phone-dark.svg" alt="phone logo" /> +84 909
+            605 162</a
+          >
+          <a
+            class="contact"
+            href="https://www.udemy.com/user/nguyen-do-quang-thach/"
+            ><img src="static/logo/udemy.svg" alt="udemy logo" />Thach</a
+          >
+          <a class="contact" href="https://join.skype.com/invite/rV1GwcO0wqB2"
+            ><img src="static/logo/skype.svg" alt="skypylogo" />Rocky</a
+          >
+        </div>
+      </div>
+      <div class="header_separator"></div>
+    </header>
+    {% block content %} {% endblock %}
+    <footer>{% block footer %} {% endblock %}</footer>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block css%}
+<link rel="stylesheet" href="static/css/home.css" />
+{% endblock %}
+
+{% block content%}
+<main class="main">
+    <a type="button" href="/static/Resume-Thach-Nguyen.pdf" class="btn_download"><img src="/static/icons/download.svg"
+            alt="download button"></a>
+    <div class="cv">
+        <iframe class="cv_pdf" src="/static/Resume-Thach-Nguyen.pdf#navpanes=0&scrollbar=0&toolbar=0"
+            type="application/pdf" frameBorder="0" scrolling="no">
+        </iframe>
+    </div>
+</main>
+{% endblock %}
+
+{% block footer %}
+<div class="footer_content">
+    <div class="footer_left">
+        <p><em>I am not a designer, just a learner. Please forgive me if this either hurts your eyes or offends
+                you</em></p>
+    </div>
+    <div class="footer_right">
+    </div>
+</div>
+{% endblock %}

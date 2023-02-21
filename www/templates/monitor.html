@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block script %}
+  <script src="/static/js/monitor.js"></script>
+{% endblock %}
+{% block css%}
+<link rel="stylesheet" href="static/css/monitor.css" />
+{% endblock %}
+{% block content%}
+<div id="node-detail-bg" onclick="hideDetailView()">
+</div>
+
+<div id="node-detail-table">
+  <div>
+    <div id="lbl_k-val-pub">Validator public key:</div>
+    <p id="k-val-pub"></p>
+  </div>
+  <table>
+    <thead>
+      <th class="m-table-cell">#</th>
+      <th class="m-table-cell">Epoch</th>
+      <th class="m-table-cell">Chain ID</th>
+      <th class="m-table-cell">Vote %</th>
+      <th class="m-table-cell">Slashed?</th>
+      <th class="m-table-cell">Reward</th>
+    </thead>
+    <tbody id="node-detail-body">
+    </tbody>
+  </table>
+</div>
+
+<div class="m-table">
+  <div class="brief-inf" onclick="getAvailableReward()">
+    <div id="payment-k" hidden>{{paymentK}}</div>
+    <div id="fullnode" hidden>{{fullnode}}</div>
+    <div class="blkInfo">{{blkInfo}}</div>
+    <div id="reward-inf"></div>
+  </div>
+  <table>
+    <thead>
+      <th class="m-table-cell">#</th>
+      <th class="m-table-cell">Keys</th>
+      <th class="m-table-cell">Status</th>
+      <th class="m-table-cell">Role</th>
+      <th class="m-table-cell">Shard</th>
+      <th class="m-table-cell">Next</th>
+      <th class="m-table-cell">Sync</th>
+      <th class="m-table-cell">%</th>
+      <th class="m-table-cell">Slash</th>
+      <th class="m-table-cell" colspan="2">Version</th>
+      <th class="m-table-cell"></th>
+    </thead>
+    <tbody>
+      {% for d in nodestat %}
+      <tr onclick="getDetailStat(this)">
+        <td class="m-table-cell">
+          <div>{{loop.index}}</div>
+        </td>
+        <td class="m-table-cell" id="key">
+          <div>{{d.get("MiningPubkey")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("Status")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("Role")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("CommitteeChain")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("nextEMsg")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("SyncState")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("VoteStat")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("IsSlashed")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("Version")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("IsOldVersion")}}</div>
+        </td>
+        <td class="m-table-cell">
+          <div>{{d.get("lastEarn")}}</div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
