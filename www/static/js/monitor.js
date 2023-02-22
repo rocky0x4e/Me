@@ -1,4 +1,5 @@
 function getAvailableReward() {
+    showLoading()
     let fullnode = document.getElementById("fullnode").textContent;
     let paymentK = document.getElementById("payment-k").textContent;
     fetch(fullnode, {
@@ -17,10 +18,13 @@ function getAvailableReward() {
             let ele = document.getElementById("reward-inf"); ele.style.height = "100%";
             ele.textContent = `* Available reward: ${r.Result.PRV / 1e9}`;
         })
+    }).finally(() => {
+        hideLoading()
     })
 }
 
 async function getDetailStat(ele) {
+    showLoading()
     fetch("https://monitor.incognito.org/pubkeystat/committee", {
         method: "POST",
         body: JSON.stringify({
@@ -61,6 +65,8 @@ async function getDetailStat(ele) {
                     row.appendChild(cell)
                 }
             }
+        }).finally(() => {
+            hideLoading()
         })
     })
 }

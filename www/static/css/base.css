@@ -182,3 +182,11 @@ body {
     box-sizing: inherit;
     background-image: linear-gradient(to left, #3f3b37, #3f3b37 50%, gold 50%, gold);
 }
+
+#loading {
+    width: 0%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url("/static/icons/loading.svg") no-repeat center center rgba(0, 0, 0, 0.25)
+}
