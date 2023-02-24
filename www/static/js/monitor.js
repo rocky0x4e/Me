@@ -24,6 +24,12 @@ function getAvailableReward() {
 }
 
 async function getDetailStat(ele) {
+    let newEleID = "subViewContainer"
+    if (e = document.getElementById(newEleID)) {
+        e.remove()
+        return
+    }
+
     showLoading()
     fetch("https://monitor.incognito.org/pubkeystat/committee", {
         method: "POST",
@@ -34,16 +40,33 @@ async function getDetailStat(ele) {
             "Content-Type": "application/json"
         }
     }).then(response => {
-        document.getElementById("k-val-pub").textContent = ele.children[1].firstElementChild.textContent
-        let view = document.getElementById("node-detail-bg")
-        view.style.width = "100%"
-        let table = document.getElementById("node-detail-table")
-        table.style.height = "90%"
-        let viewBody = document.getElementById("node-detail-body")
-        let count = viewBody.childElementCount
-        for (let i = 0; i < count; i++) {
-            viewBody.removeChild(viewBody.lastChild)
+        let newEleHtml = `
+            <tr id="${newEleID}">
+                <td colspan="100%" class="m-table-cell">
+                    <div id="subView">
+                        <div class="group-mpk">
+                            <div>Validator public key:</div>
+                            <div id="mpk"></div>
+                        </div>
+                        <table>
+                            <thead id="subTableHeader"></thead>
+                            <tbody id="subTableBody"></tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        `
+        ele.insertAdjacentHTML("afterEnd", newEleHtml)
+        document.getElementById("mpk").textContent = ele.children[1].textContent
+        let subTableHeaders = ["#", "Epoch", "ChainID", "voteStat", "IsSlashed", "Reward"]
+        let thead = document.getElementById("subTableHeader")
+        for (key of subTableHeaders) {
+            let th = document.createElement("th")
+            th.textContent = key
+            thead.appendChild(th)
         }
+        let tbody = document.getElementById("subTableBody")
+
         response.json().then(result => {
             for (let index in result) {
                 item = result[index]
@@ -51,12 +74,12 @@ async function getDetailStat(ele) {
                 item.voteStat = (item.totalVoteConfirm / item.totalEpochCountBlock * 100).toFixed(0) + "%"
                 item.IsSlashed = item.IsSlashed ?? false
                 item.Reward = (item.Reward / 1e9).toFixed(2)
-                item.i = index
+                item["#"] = index
 
                 //show
                 let row = document.createElement("tr")
-                viewBody.appendChild(row)
-                for (let info of ["i", "Epoch", "ChainID", "voteStat", "IsSlashed", "Reward"]) {
+                tbody.appendChild(row)
+                for (let info of subTableHeaders) {
                     let cell = document.createElement("td")
                     let div = document.createElement("div")
                     cell.appendChild(div)
@@ -69,10 +92,4 @@ async function getDetailStat(ele) {
             hideLoading()
         })
     })
-}
-
-function hideDetailView() {
-    document.getElementById("node-detail-table").style.height = 0
-    document.getElementById("node-detail-bg").style.width = 0
-
 }

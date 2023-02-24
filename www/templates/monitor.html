@@ -7,28 +7,6 @@
 <link rel="stylesheet" href="static/css/monitor.css" />
 {% endblock %}
 {% block content%}
-<div id="node-detail-bg" onclick="hideDetailView()">
-</div>
-
-<div id="node-detail-table">
-  <div>
-    <div id="lbl_k-val-pub">Validator public key:</div>
-    <p id="k-val-pub"></p>
-  </div>
-  <table>
-    <thead>
-      <th class="m-table-cell">#</th>
-      <th class="m-table-cell">Epoch</th>
-      <th class="m-table-cell">Chain ID</th>
-      <th class="m-table-cell">Vote %</th>
-      <th class="m-table-cell">Slashed?</th>
-      <th class="m-table-cell">Reward</th>
-    </thead>
-    <tbody id="node-detail-body">
-    </tbody>
-  </table>
-</div>
-
 <div class="m-table">
   <div class="brief-inf" onclick="getAvailableReward()">
     <div id="payment-k" hidden>{{paymentK}}</div>

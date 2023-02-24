@@ -1,45 +1,3 @@
-#node-detail-bg {
-    background-color: rgba(209, 209, 209, 0.8);
-    height: 100%;
-    width: 0%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-}
-
-#node-detail-table {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 5%;
-    left: 25%;
-    z-index: 2;
-    height: 0;
-    width: 50%;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    margin: 0 0;
-    background-color: #3f3b37;
-    color: gold;
-    justify-content: space-around;
-    transition: ease-in .5s;
-    -webkit-transition: ease-in .5s;
-    -moz-transition: ease-in .5s;
-    -ms-transition: ease-in .5s;
-    -o-transition: ease-in .5s;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-    scrollbar-width: none;
-}
-
-#node-detail-table::-webkit-scrollbar {
-    display: none;
-}
-
 .brief-inf {
     display: flex;
     flex-direction: column;
@@ -75,7 +33,7 @@
     display: none;
 }
 
-table {
+.m-table table {
     margin: 5px auto;
     table-layout: fixed;
 }
@@ -93,22 +51,29 @@ table {
     overflow: hidden;
 }
 
-#k-val-pub,
-#lbl_k-val-pub {
-    margin: 20px 0px;
-    width: 90%;
-    margin: 20px auto;
+#subViewContainer td div {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-#k-val-pub {
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+.group-mpk {
+    display: flex;
+    flex-direction: column;
+}
 
-    border-style: solid;
-    border-color: rgba(209, 209, 209, 0.8);
-    overflow-wrap: break-word;
+.group-mpk div {
+    margin: 5px auto;
     padding: 5px 10px;
+    overflow-wrap: anywhere;
+}
+
+#mpk {
+    max-width: 50%;
+}
+
+@media screen and (max-height: 850px) {
+    #mpk {
+        max-width: 100%;
+    }
 }
