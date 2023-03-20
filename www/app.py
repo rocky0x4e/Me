@@ -81,10 +81,11 @@ def create_app():
                        #    item["CommitteeChain"],
                        item["nextECount"]])
 
-        blkInfo = f"* Epoch: {CURRENT_E}, height: {CURRENT_H}, " + \
-            f"remain {REMAIN_BLOCK} ~ {datetime.timedelta(seconds=REMAIN_BLOCK*CONTEXT.BLK_TIME)}, " +\
-            f"block time: {CONTEXT.BLK_TIME}"
-
+        blkInfo = {"epoch": CURRENT_E,
+                   "height": CURRENT_H,
+                   "remainB": REMAIN_BLOCK,
+                   "remainT": datetime.timedelta(seconds=REMAIN_BLOCK*CONTEXT.BLK_TIME),
+                   "blkTime": CONTEXT.BLK_TIME}
         return render_template("monitor.html", blkInfo=blkInfo, nodestat=stats, paymentK=CONTEXT.KEY_PAYMENT, fullnode=vnode.url)
 
     return app

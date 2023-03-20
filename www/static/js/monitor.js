@@ -1,7 +1,13 @@
-function getAvailableReward() {
-    showLoading()
+function showMore(ele) {
     let fullnode = document.getElementById("fullnode").textContent;
     let paymentK = document.getElementById("payment-k").textContent;
+    let pool_id = '0000000000000000000000000000000000000000000000000000000000000004-076a4423fa20922526bd50b0d7b0dc1c593ce16e15ba141ede5fb5a28aa3f229-33a8ceae6db677d9860a6731de1a01de7e1ca7930404d7ec9ef5028f226f1633'
+    let beaconH = parseInt(ele.id)
+    showLoading()
+    let mores = document.getElementsByClassName("more")
+    while (mores.length > 0) {
+        mores[0].remove()
+    }
     fetch(fullnode, {
         method: "POST",
         body: JSON.stringify({
@@ -15,8 +21,48 @@ function getAvailableReward() {
         }
     }).then(response => {
         response.json().then(r => {
-            let ele = document.getElementById("reward-inf"); ele.style.height = "100%";
-            ele.textContent = `* Available reward: ${r.Result.PRV / 1e9}`;
+            let e = document.createElement("div")
+            e.setAttribute("class", "more")
+            e.textContent = `* Available reward: ${r.Result.PRV / 1e9}`;
+            ele.appendChild(e)
+        })
+    }).finally(() => {
+        hideLoading()
+    })
+
+    showLoading()
+    fetch(fullnode, {
+        method: "POST",
+        body: JSON.stringify({
+            "id": 1, "jsonrpc": "1.0", "method": "pdexv3_getState", "params": [
+                {
+                    "BeaconHeight": beaconH,
+                    "Filter": {
+                        "Key": "PoolPair",
+                        "Verbosity": 1,
+                        "ID": pool_id
+                    }
+                }]
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(response => {
+        response.json().then(r => {
+            let pool_info = r["Result"]["PoolPairs"][pool_id]
+            let v_pool_usdt = pool_info["State"]["Token1VirtualAmount"]
+            let v_pool_prv = pool_info["State"]["Token0VirtualAmount"]
+            let r_pool_usdt = pool_info["State"]["Token1RealAmount"]
+            let r_pool_prv = pool_info["State"]["Token0RealAmount"]
+            let amp = pool_info["State"]["Amplifier"]
+            let price = v_pool_usdt / v_pool_prv
+            let e = document.createElement("div")
+            e.setAttribute("class", "more")
+            e.style.height = "100%";
+            e.textContent = `* PRV price ${price.toFixed(4)},
+             RPool PRV-USDT: ${(r_pool_prv / 1e9).toFixed(2)} - ${(r_pool_usdt / 1e9).toFixed(2)},
+             VPool: ${(v_pool_prv / 1e9).toFixed(2)} - ${(v_pool_usdt / 1e9).toFixed(2)}, AMP: ${(amp / 10000).toFixed(1)}`;
+            ele.appendChild(e)
         })
     }).finally(() => {
         hideLoading()

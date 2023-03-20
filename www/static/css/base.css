@@ -96,6 +96,7 @@ header {
 
 .contact img {
     height: 28px;
+    width: fit-content;
     padding-right: 8px;
 }
 
