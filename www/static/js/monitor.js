@@ -20,12 +20,12 @@ function showMore(ele) {
             "Content-Type": "application/json"
         }
     }).then(response => {
-        response.json().then(r => {
-            let e = document.createElement("div")
-            e.setAttribute("class", "more")
-            e.textContent = `* Available reward: ${r.Result.PRV / 1e9}`;
-            ele.appendChild(e)
-        })
+        return response.json()
+    }).then(r => {
+        let e = document.createElement("div")
+        e.setAttribute("class", "more")
+        e.textContent = `* Available reward: ${r.Result.PRV / 1e9}`;
+        ele.appendChild(e)
     }).finally(() => {
         hideLoading()
     })
@@ -48,22 +48,22 @@ function showMore(ele) {
             "Content-Type": "application/json"
         }
     }).then(response => {
-        response.json().then(r => {
-            let pool_info = r["Result"]["PoolPairs"][pool_id]
-            let v_pool_usdt = pool_info["State"]["Token1VirtualAmount"]
-            let v_pool_prv = pool_info["State"]["Token0VirtualAmount"]
-            let r_pool_usdt = pool_info["State"]["Token1RealAmount"]
-            let r_pool_prv = pool_info["State"]["Token0RealAmount"]
-            let amp = pool_info["State"]["Amplifier"]
-            let price = v_pool_usdt / v_pool_prv
-            let e = document.createElement("div")
-            e.setAttribute("class", "more")
-            e.style.height = "100%";
-            e.textContent = `* PRV price ${price.toFixed(4)},
+        return response.json()
+    }).then(r => {
+        let pool_info = r["Result"]["PoolPairs"][pool_id]
+        let v_pool_usdt = pool_info["State"]["Token1VirtualAmount"]
+        let v_pool_prv = pool_info["State"]["Token0VirtualAmount"]
+        let r_pool_usdt = pool_info["State"]["Token1RealAmount"]
+        let r_pool_prv = pool_info["State"]["Token0RealAmount"]
+        let amp = pool_info["State"]["Amplifier"]
+        let price = v_pool_usdt / v_pool_prv
+        let e = document.createElement("div")
+        e.setAttribute("class", "more")
+        e.style.height = "100%";
+        e.textContent = `* PRV price ${price.toFixed(4)},
              RPool PRV-USDT: ${(r_pool_prv / 1e9).toFixed(2)} - ${(r_pool_usdt / 1e9).toFixed(2)},
              VPool: ${(v_pool_prv / 1e9).toFixed(2)} - ${(v_pool_usdt / 1e9).toFixed(2)}, AMP: ${(amp / 10000).toFixed(1)}`;
-            ele.appendChild(e)
-        })
+        ele.appendChild(e)
     }).finally(() => {
         hideLoading()
     })
@@ -113,29 +113,29 @@ async function getDetailStat(ele) {
         }
         let tbody = document.getElementById("subTableBody")
 
-        response.json().then(result => {
-            for (let index in result) {
-                item = result[index]
-                //data processing
-                item.voteStat = (item.totalVoteConfirm / item.totalEpochCountBlock * 100).toFixed(0) + "%"
-                item.IsSlashed = item.IsSlashed ?? false
-                item.Reward = (item.Reward / 1e9).toFixed(2)
-                item["#"] = index
+        return response.json()
+    }).then(result => {
+        for (let index in result) {
+            item = result[index]
+            //data processing
+            item.voteStat = (item.totalVoteConfirm / item.totalEpochCountBlock * 100).toFixed(0) + "%"
+            item.IsSlashed = item.IsSlashed ?? false
+            item.Reward = (item.Reward / 1e9).toFixed(2)
+            item["#"] = index
 
-                //show
-                let row = document.createElement("tr")
-                tbody.appendChild(row)
-                for (let info of subTableHeaders) {
-                    let cell = document.createElement("td")
-                    let div = document.createElement("div")
-                    cell.appendChild(div)
-                    div.setAttribute("class", "m-table-cell")
-                    div.textContent = item[info]
-                    row.appendChild(cell)
-                }
+            //show
+            let row = document.createElement("tr")
+            tbody.appendChild(row)
+            for (let info of subTableHeaders) {
+                let cell = document.createElement("td")
+                let div = document.createElement("div")
+                cell.appendChild(div)
+                div.setAttribute("class", "m-table-cell")
+                div.textContent = item[info]
+                row.appendChild(cell)
             }
-        }).finally(() => {
-            hideLoading()
-        })
+        }
+    }).finally(() => {
+        hideLoading()
     })
 }
