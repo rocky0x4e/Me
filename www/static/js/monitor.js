@@ -71,6 +71,7 @@ function showMore(ele) {
 
 async function getDetailStat(ele) {
     let newEleID = "subViewContainer"
+    let subTableHeaders = ["#", "Epoch", "ChainID", "voteStat", "IsSlashed", "Reward"]
     if (e = document.getElementById(newEleID)) {
         e.remove()
         return
@@ -104,17 +105,16 @@ async function getDetailStat(ele) {
         `
         ele.insertAdjacentHTML("afterEnd", newEleHtml)
         document.getElementById("mpk").textContent = ele.children[1].textContent
-        let subTableHeaders = ["#", "Epoch", "ChainID", "voteStat", "IsSlashed", "Reward"]
         let thead = document.getElementById("subTableHeader")
         for (key of subTableHeaders) {
             let th = document.createElement("th")
             th.textContent = key
             thead.appendChild(th)
         }
-        let tbody = document.getElementById("subTableBody")
 
         return response.json()
     }).then(result => {
+        let tbody = document.getElementById("subTableBody")
         for (let index in result) {
             item = result[index]
             //data processing
