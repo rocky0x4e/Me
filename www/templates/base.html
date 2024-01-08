@@ -1,93 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
-  {% block script %}{% endblock script %}
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0"/>
-    <title>Rocky</title>
-    {% block css %}{% endblock css %}
-    <link rel="apple-touch-icon"
-          sizes="180x180"
-          href="{{ url_for('static', filename='icons/favicon_io/apple-touch-icon.png') }}"/>
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="{{ url_for('static', filename='icons/favicon_io/favicon-32x32.png') }}"/>
-    <link rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href={{ url_for('static', filename='icons/favicon_io/favicon-16x16.png') }}/>
-    <link rel="manifest" href="static/icons/favicon_io/site.webmanifest" />
-    <link rel="stylesheet" href={{ url_for('static', filename='css/base.css') }} />
-  </head>
-  <body>
-    <div id="loading"></div>
-    <div id="sidebarBackground" hidden onclick="closeBar()"></div>
-    <div id="mySidebar" class="sidebar">
-      <div class="sizebar_upper">
-        <a class="closebtn" onclick="closeBar()"></a
-          >
-          <p>Thanks for visitting!!!</p>
-        </div>
-        <div class="sizebar_lower">
-          <a class="lnk" href="/">🤌 Home</a>
-          <a class="lnk" href="{{ url_for('monitor') }}">🤌 Node monitor</a>
-          <a class="lnk" href="https://10.0.0.100:8080">🤌 Gateway config</a>
-          <a class="lnk" href="/share">🤌 Share on NAS</a>
-          <a class="lnk" href="/t">🤌 Transmission torrent</a>
-          <a class="lnk"
-             href="https://infura.io/dashboard/ethereum/20560320d63146d1bfc604a0594da2bc/stats">🤌 Infura stat</a
-            >
-          </div>
-        </div>
-        <header>
-          <div class="header_content">
-            <div class="header_left">
-              <img src="{{ url_for('static', filename='img/avatar.jpg') }}"
-                   onclick="toggleBar()"
-                   class="header_avatar"
-                   alt="avatar"/>
-            </div>
-            <div class="header_right">
-              <a class="contact" href="https://www.linkedin.com/in/thach-nguyen">
-                <img src="{{ url_for('static', filename='logo/linkedin-linked-in.svg') }}" alt="linkedin logo" />
-                Thạch Nguyễn</a
-                >
-                <a class="contact" href="https://t.me/Rocky8x">
-                  <img src="{{ url_for('static', filename='logo/telegram.svg') }}" alt="Telegram logo" />
-                  Rocky</a
-                  >
-                  <a class="contact" href="https://github.com/Rocky8x">
-                    <img src="{{ url_for('static', filename='logo/github-dark.svg') }}" alt="github logo" />
-                    Rocky8x</a
-                    >
-                    <a class="contact" href="mailto:madfatcat88@gmail.com">
-                      <img src="{{ url_for('static', filename='logo/gmail.svg') }}" alt="gmail logo" />
-                      madfatcat88@gmail.com</a
-                      >
-                      <a class="contact" href="tel:+84909605162">
-                        <img src="{{ url_for('static', filename='icons/phone-dark.svg') }}" alt="phone logo" />
-                        +84 909
-                        605 162</a
-                        >
-                        <a class="contact"
-                           href="https://www.udemy.com/user/nguyen-do-quang-thach/">
-                          <img src="{{ url_for('static', filename='logo/udemy.svg') }}" alt="udemy logo" />
-                          Thach</a
-                          >
-                          <a class="contact" href="https://join.skype.com/invite/rV1GwcO0wqB2">
-                            <img src="{{ url_for('static', filename='logo/skype.svg') }}" alt="skypylogo" />
-                            Rocky</a
-                            >
-                          </div>
-                        </div>
-                        <div class="header_separator"></div>
-                      </header>
-                      {% block content %}{% endblock content %}
-                      <footer>
-                        {% block footer %}{% endblock footer %}
-                      </footer>
-                    </body>
-                  </html>
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+{% block script %}{% endblock script %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0" />
+  <title>Rocky</title>
+  {% block css %}{% endblock css %}
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="{{ url_for('static', filename='icons/favicon_io/apple-touch-icon.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="{{ url_for('static', filename='icons/favicon_io/favicon-32x32.png') }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href={{ url_for('static',
+    filename='icons/favicon_io/favicon-16x16.png' ) }} />
+  <link rel="manifest" href="static/icons/favicon_io/site.webmanifest" />
+  <link rel="stylesheet" href={{ url_for('static', filename='css/base.css' ) }} />
+</head>
+
+<body>
+  <div id="loading"></div>
+  <div id="sidebarBackground" hidden onclick="closeBar()"></div>
+  <div id="mySidebar" class="sidebar">
+    <div class="sizebar_upper">
+      <a class="closebtn" onclick="closeBar()"></a>
+      <p>Thanks for visitting!!!</p>
+    </div>
+    <div class="sizebar_lower">
+      <a class="lnk" href="/">🤌 Home</a>
+      <a class="lnk" href="{{ url_for('monitor') }}">🤌 Node monitor</a>
+      <a class="lnk" href="https://10.0.0.100:8080">🤌 Gateway config</a>
+      <a class="lnk" href="/share">🤌 Share on NAS</a>
+      <a class="lnk" href="/t">🤌 Transmission torrent</a>
+      <a class="lnk" href="https://infura.io/dashboard/ethereum/20560320d63146d1bfc604a0594da2bc/stats">🤌 Infura
+        stat</a>
+    </div>
+  </div>
+  <header>
+    <div class="header_content">
+      <div class="header_left">
+        <img src="{{ url_for('static', filename='img/avatar.jpg') }}" onclick="toggleBar()" class="header_avatar"
+          alt="avatar" />
+      </div>
+      <div class="header_right">
+        <a class="contact" href="https://www.linkedin.com/in/thach-nguyen">
+          <img src="{{ url_for('static', filename='logo/linkedin-linked-in.svg') }}" alt="linkedin logo" />
+          Thạch Nguyễn</a>
+        <a class="contact" href="https://t.me/rocky0x4e">
+          <img src="{{ url_for('static', filename='logo/telegram.svg') }}" alt="Telegram logo" />
+          Rocky</a>
+        <a class="contact" href="https://github.com/rocky0x4e">
+          <img src="{{ url_for('static', filename='logo/github-dark.svg') }}" alt="github logo" />
+          rocky0x4e</a>
+        <a class="contact" href="mailto:madfatcat88@gmail.com">
+          <img src="{{ url_for('static', filename='logo/gmail.svg') }}" alt="gmail logo" />
+          madfatcat88@gmail.com</a>
+        <a class="contact" href="tel:+84909605162">
+          <img src="{{ url_for('static', filename='icons/phone-dark.svg') }}" alt="phone logo" />
+          +84 909
+          605 162</a>
+        <a class="contact" href="https://www.udemy.com/user/nguyen-do-quang-thach/">
+          <img src="{{ url_for('static', filename='logo/udemy.svg') }}" alt="udemy logo" />
+          Thach</a>
+        <a class="contact" href="https://join.skype.com/invite/rV1GwcO0wqB2">
+          <img src="{{ url_for('static', filename='logo/skype.svg') }}" alt="skypylogo" />
+          Rocky</a>
+      </div>
+    </div>
+    <div class="header_separator"></div>
+  </header>
+  {% block content %}{% endblock content %}
+  <footer>
+    {% block footer %}{% endblock footer %}
+  </footer>
+</body>
+
+</html>
