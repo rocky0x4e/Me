@@ -60,7 +60,11 @@ def create_app():
                 nextTimeCount = datetime.timedelta(seconds=0)
 
             regex = re.compile(r'.*\(epoch:(\d+)\)')
-            matchLastEarn = re.match(regex, item["VoteStat"][0])
+            try:
+                matchLastEarn = re.match(regex, item["VoteStat"][0])
+                item["VoteStat"] = item["VoteStat"][0].split(" ")[0]
+            except:
+                matchLastEarn = None
             lastEarnE = 0
             if matchLastEarn is not None:
                 lastEarnE = int(matchLastEarn.group(1))
@@ -72,7 +76,6 @@ def create_app():
             item["nextRole"] = nextRole
             item["nextTCount"] = nextTimeCount
             item["SyncState"] = item["SyncState"].capitalize()
-            item["VoteStat"] = item["VoteStat"][0].split(" ")[0]
             item["IsOldVersion"] = "latest" if item["IsOldVersion"] else "Old"
             item["lastEarn"] = CURRENT_E - lastEarnE
 
