@@ -21,3 +21,7 @@ class AppContext:
     @property
     def KEY_PAYMENT(self):
         return self.context["keyPayment"]
+
+    @property
+    def POOLID(self):
+        return self.context["poolId"]

@@ -89,6 +89,6 @@ def create_app():
                    "remainB": REMAIN_BLOCK,
                    "remainT": datetime.timedelta(seconds=REMAIN_BLOCK*CONTEXT.BLK_TIME),
                    "blkTime": CONTEXT.BLK_TIME}
-        return render_template("monitor.html", blkInfo=blkInfo, nodestat=stats, paymentK=CONTEXT.KEY_PAYMENT, fullnode=vnode.url)
+        return render_template("monitor.html", blkInfo=blkInfo, nodestat=stats, paymentK=CONTEXT.KEY_PAYMENT, fullnode=vnode.url, poolId=CONTEXT.POOLID)
 
     return app

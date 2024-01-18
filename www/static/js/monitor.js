@@ -1,7 +1,8 @@
 function showMore(ele) {
     let fullnode = document.getElementById("fullnode").textContent;
     let paymentK = document.getElementById("payment-k").textContent;
-    let pool_id = '0000000000000000000000000000000000000000000000000000000000000004-076a4423fa20922526bd50b0d7b0dc1c593ce16e15ba141ede5fb5a28aa3f229-33a8ceae6db677d9860a6731de1a01de7e1ca7930404d7ec9ef5028f226f1633'
+    let pool_id = document.getElementById("poolId").textContent;
+
     let beaconH = parseInt(ele.id)
     showLoading()
     let mores = document.getElementsByClassName("more")
