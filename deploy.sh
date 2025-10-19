@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SYSD_SERVICE=RockyWWW
+SYSD_SERVICE=RockyWWW.service
 WORKING_DIR=$(pwd)
 
 python3 -m venv venv
@@ -22,7 +22,7 @@ ExecReload = /bin/kill -s HUP $MAINPID
 ExecStop = /bin/kill -s TERM $MAINPID
 StandardOutput = journal
 StandardError = journal
-SyslogIdentifier = ${SYSD_SERVICE}
+SyslogIdentifier = ${SYSD_SERVICE//.service/}
 
 [Install]
 WantedBy = default.target
