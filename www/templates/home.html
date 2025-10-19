@@ -5,13 +5,13 @@
 
 {% block content %}
 <main class="main">
-    <a type="button" href="{{ url_for('static', filename='Thach_Nguyen_cv_itviec.pdf') }}" class="btn_download">
+    <a type="button" href="{{ url_for('static', filename='Profile_Rocky.pdf') }}" class="btn_download">
         <img height="100%" width="100%" src="{{ url_for('static', filename='icons/download.svg') }}"
             alt="download button" />
     </a>
     <div class="cv">
         <iframe class="cv_pdf"
-            src="{{ url_for('static', filename='Thach_Nguyen_cv_itviec.pdf') }}#navpanes=0&scrollbar=0&toolbar=0"
+            src="{{ url_for('static', filename='Profile_Rocky.pdf') }}#navpanes=0&scrollbar=0&toolbar=0"
             type="application/pdf" frameBorder="0" scrolling="no">
         </iframe>
     </div>
