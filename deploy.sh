@@ -9,4 +9,4 @@ pip install -r requirements.txt
 cd www
 
 setsid gunicorn -D --log-file runtime.log \
-    --pid ./pid --workers 4 --bind unix:app.sock wsgi:app
+    --pid ./pid --workers 4 --bind unix:app.sock wsgi:app &
