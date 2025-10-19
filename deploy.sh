@@ -17,7 +17,7 @@ After = network.target
 [Service]
 Type=notify
 WorkingDirectory = ${WORKING_DIR}/www
-ExecStart = ${WORKING_DIR}/www/venv/bin/gunicorn --pid ./pid --workers 4 --bind unix:${WORKING_DIR}/Me/www/app.sock wsgi:app
+ExecStart = ${WORKING_DIR}/venv/bin/gunicorn --pid ./pid --workers 4 --bind unix:${WORKING_DIR}/www/app.sock wsgi:app
 ExecReload = /bin/kill -s HUP $MAINPID
 ExecStop = /bin/kill -s TERM $MAINPID
 StandardOutput = journal
