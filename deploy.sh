@@ -19,11 +19,11 @@ Type=notify
 WorkingDirectory = ${WORKING_DIR}/www
 ExecStart = ${WORKING_DIR}/venv/bin/gunicorn --pid ./pid --workers 4 --bind unix:${WORKING_DIR}/www/app.sock wsgi:app
 EOF
-cat << "EOF" > /home/rocky/.config/systemd/user/$SYSD_SERVICE
+cat << "EOF" >> /home/rocky/.config/systemd/user/$SYSD_SERVICE
 ExecReload = /bin/kill -s HUP $MAINPID
 ExecStop = /bin/kill -s TERM $MAINPID
 EOF
-cat << EOF > /home/rocky/.config/systemd/user/$SYSD_SERVICE
+cat << EOF >> /home/rocky/.config/systemd/user/$SYSD_SERVICE
 StandardOutput = journal
 StandardError = journal
 SyslogIdentifier = ${SYSD_SERVICE//.service/}
