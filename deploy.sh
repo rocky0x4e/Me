@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SYSD_SERVICE=RockyWWW.service
-WORKING_DIR=$(pwd)
+WORKING_DIR=$(pwd -P)
 
 python3 -m venv venv
 source ./venv/bin/activate
