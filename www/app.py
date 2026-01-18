@@ -20,6 +20,8 @@ def create_app():
         finally:
             s.close()
 
-        return render_template("home.html", gatewayAdmin=f"http://{gatewayIp}", adguardAdmin=f"http://{myIp}:8080")
+        return render_template("home.html", gatewayAdmin=f"http://{gatewayIp}",
+                               adguardAdmin=f"http://{myIp}:8080",
+                               resume="Thach-Nguyen-Resume-2026.pdf")
 
     return app
