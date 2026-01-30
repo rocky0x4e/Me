@@ -4,7 +4,8 @@ function closeBar() {
     document.getElementById("mySidebar").style.width = "0px";
 }
 
-function toggleBar() {
+async function toggleBar() {
+    await loading3s()
     let bar = document.getElementById("mySidebar")
     let width = bar.style.width;
     width = width == null || width == "0px" ? 0 : width;

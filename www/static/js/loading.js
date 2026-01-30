@@ -12,3 +12,10 @@ function hideLoading() {
         document.getElementById("loading").style.width = "0%"
     }
 }
+
+async function loading3s() {
+    document.getElementById("loading").style.width = "100%"
+    await new Promise(resolve => setTimeout(resolve, 3000))
+    document.getElementById("loading").style.width = "0%"
+
+}

@@ -189,10 +189,55 @@ body {
     background-image: linear-gradient(to left, #3f3b37, #3f3b37 50%, gold 50%, gold);
 }
 
-#loading {
+
+.loading {
     width: 0%;
     height: 100%;
     position: fixed;
     z-index: 9999;
-    background: url("/static/icons/loading.svg") no-repeat center center rgba(0, 0, 0, 0.25)
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.loading span {
+    width: 4px;
+    height: 50px;
+    background: #4c86f9;
+    animation: scale 0.9s ease-in-out infinite;
+}
+
+.loading span:nth-child(2) {
+    background: #49a84c;
+    animation-delay: 0.8s;
+}
+
+.loading span:nth-child(3) {
+    background: #f6bb02;
+    animation-delay: 0.7s;
+}
+
+.loading span:nth-child(4) {
+    background: #f6bb02;
+    animation-delay: 0.6s;
+}
+
+.loading span:nth-child(5) {
+    background: #2169f3;
+    animation-delay: 0.5s;
+}
+
+@keyframes scale {
+
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.05);
+    }
+
+    20% {
+        transform: scaleY(1);
+    }
 }

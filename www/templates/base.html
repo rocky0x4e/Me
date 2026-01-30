@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+
 {% block script %}{% endblock script %}
 
 <head>
@@ -19,7 +21,13 @@
 </head>
 
 <body>
-  <div id="loading"></div>
+  <div id="loading" class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <div id="sidebarBackground" hidden onclick="closeBar()"></div>
   <div id="mySidebar" class="sidebar">
     <div class="sizebar_upper">
@@ -28,11 +36,7 @@
     </div>
     <div class="sizebar_lower">
       <a class="lnk" href="/">🤌 Home</a>
-      <a class="lnk" href="{{ gatewayAdmin }}">🤌 Gateway config</a>
-      <a class="lnk" href="{{ adguardAdmin }}">🤌 Adguard admin</a>
-      <a class="lnk" href="https://ha.rocky0x4e.org/">🤌 Home Assistant</a>
       <a class="lnk" href="https://app.rocky0x4e.org/pwp">🤌 Playwright practice app</a>
-      <a class="lnk" href="https://app.rocky0x4e.org/t">🤌 Transmission torrent</a>
     </div>
   </div>
   <header>
