@@ -22,6 +22,6 @@ def create_app():
 
         return render_template("home.html", gatewayAdmin=f"http://{gatewayIp}",
                                adguardAdmin=f"http://{myIp}:8080",
-                               resume="Thach-Nguyen-Resume-2026.pdf")
+                               resume="Thach-Nguyen-Resume-latest.pdf")
 
     return app
