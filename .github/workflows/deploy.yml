@@ -21,4 +21,4 @@ jobs:
       - name: deploy
         run: |
           # Replace this with your restart command
-          /bin/bash ./deploy.sh
+          docker run -d --name my-flask-app -p 5000:5000 my-flask-image
