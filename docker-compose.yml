@@ -1,0 +1,10 @@
+services:
+  aboutMe:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    container_name: aboutMe
+    image: rocky/about
+    restart: unless-stopped
+    ports:
+      - 5000:5000
